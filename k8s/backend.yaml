@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-service
+spec:
+  clusterIP: 10.98.232.79
+  selector:
+    app: my-app
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-deployment
+  labels:
+    app: my-app
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: my-app
+        tier: backend
+    spec:
+      containers:
+      - name: my-be-container
+        image: petrovskiemil/my-be-app
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MONGODB_USER
+          value: admin
+        - name: MONGODB_PASSWORD
+          value: admin
+        - name: MONGODB_HOST
+          value: mongodb-service
+      restartPolicy: Always
