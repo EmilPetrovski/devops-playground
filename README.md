@@ -3,4 +3,3 @@
 - Dockerized application
 - Kubernetes cluster
 - IaC (CloudFormation, CDK)
-# devops-playground
