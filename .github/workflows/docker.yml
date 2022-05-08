@@ -1,0 +1,21 @@
+name: Build Docker images with GitHub Actions
+
+on: 
+  push:
+    branches:
+      - 'emil'
+
+jobs: 
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker build frontend
+      run: |
+        docker build ./frontend -t petrovskiemil/my-fe-app-githubactions:1.0.0
+    - name: docker build backend
+      run: |
+        docker build ./backend -t petrovskiemil/my-be-app-githubactions:1.0.0
+    - name: docker build mongodb
+      run: |
+        docker build ./mongo -t petrovskiemil/my-mongo-githubactions:1.0.0    
