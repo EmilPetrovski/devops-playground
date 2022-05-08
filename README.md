@@ -1,6 +1,5 @@
 # devops-playground
 
 - Dockerized application
-- Kubernetes cluster
+- Kubernetes
 - IaC (CloudFormation, CDK)
-# devops-playground
